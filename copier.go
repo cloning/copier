@@ -68,7 +68,8 @@ func Copy(toValue interface{}, fromValue interface{}) (err error) {
 				fromField := source.FieldByName(name)
 				toField := dest.FieldByName(name)
 				toMethod := dest.Addr().MethodByName(name)
-				if fromField.IsValid() && toField.IsValid() {
+
+				if fromField.IsValid() && toField.IsValid() && fromField.Type() == toField.Type() {
 					toField.Set(fromField)
 				}
 
